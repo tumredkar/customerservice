@@ -133,7 +133,7 @@ public class CustomerJDBCDao implements CustomerRepositoryDefinition {
 			ResultSet resultSet = psmt.executeQuery();
 			List<Customer> dataSet = populateCustomers(resultSet);
 			if (dataSet != null && !dataSet.isEmpty()) {
-				dataSet.get(0);
+				return dataSet.get(0);
 			}
 
 		} catch (Exception e) {
@@ -147,13 +147,11 @@ public class CustomerJDBCDao implements CustomerRepositoryDefinition {
 	}
 
 	@Override
-	public List<Customer> getAllCustomers(String customerid) {
+	public List<Customer> getAllCustomers() {
 		Connection connection = null;
 		try {
 			connection = manager.getConnection();
 			PreparedStatement psmt = connection.prepareStatement(SELECT_CUSTOMER_COMMON);
-			int i = 1;
-			psmt.setObject(i++, customerid);
 
 			ResultSet resultSet = psmt.executeQuery();
 			return populateCustomers(resultSet);
@@ -172,16 +170,13 @@ public class CustomerJDBCDao implements CustomerRepositoryDefinition {
 		while (resultSet.next()) {
 			int i = 1;
 			Customer Customer = new Customer();
-			// "SELECT CUSTOMERID, FIRSTNAME, LASTNAME, AGE, GENDER, COUNTRY FROM CUSTOMER
-			// ";
+			// "SELECT CUSTOMERID, FIRSTNAME, LASTNAME, AGE, GENDER, COUNTRY FROM CUSTOMER";
 			Customer.setCustomerid(resultSet.getString(i++));
 			Customer.setFirstname(resultSet.getString(i++));
 			Customer.setLastname(resultSet.getString(i++));
 			Customer.setAge(resultSet.getInt(i++));
 			Customer.setGender(resultSet.getString(i++));
-			;
 			Customer.setCountry(resultSet.getString(i++));
-			;
 			customers.add(Customer);
 		}
 		return customers;

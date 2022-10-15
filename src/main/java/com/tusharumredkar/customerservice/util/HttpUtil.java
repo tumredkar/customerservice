@@ -8,11 +8,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
 
-public class HttpUtil {
+@Component
+@ConditionalOnProperty(value = "http.util.enabled", havingValue = "true", matchIfMissing = true)
+public class HttpUtil implements HttpDefinition {
 
-	public static String makeHttpConnection(String requestBody, HttpMethod method, String url, String connectTimeout,
+	@Override
+	public String makeHttpConnection(String requestBody, HttpMethod method, String url, String connectTimeout,
 			String readTimeout) {
 		try {
 			HttpURLConnection httpClient = (HttpURLConnection) new URL(url).openConnection();

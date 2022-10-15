@@ -1,6 +1,7 @@
 package com.tusharumredkar.customerservice.repository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class CustomerJPADao implements CustomerRepositoryDefinition {
 
 	@Override
 	public boolean updateCustomer(Customer customer) {
-		customerRepository.save(customer);
-		return false;
+		Customer data = customerRepository.save(customer);
+		return !Objects.isNull(data);
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class CustomerJPADao implements CustomerRepositoryDefinition {
 	}
 
 	@Override
-	public List<Customer> getAllCustomers(String customerid) {
+	public List<Customer> getAllCustomers() {
 		return customerRepository.findAll();
 	}
 

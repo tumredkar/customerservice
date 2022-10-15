@@ -17,6 +17,6 @@ public class RetrieveAllCustomers {
 
 	@GetMapping("/customers")
 	private List<Customer> getAllCustomers() {
-		return null;
+		return customerRepository.getAllCustomers();
 	}
 }

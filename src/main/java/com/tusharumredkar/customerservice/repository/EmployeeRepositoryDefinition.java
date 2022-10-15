@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.tusharumredkar.customerservice.model.Customer;
 
-public interface CustomerRepositoryDefinition {
+public interface EmployeeRepositoryDefinition {
 
 	public boolean insertCustomer(Customer customer);
 
