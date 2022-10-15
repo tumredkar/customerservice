@@ -1,0 +1,2 @@
+INSERT INTO Customer (customerid, firstname, lastname, age, gender, country) VALUES (1, 'Tushar', 'umredkar', 24, 'Male', 'India');
+INSERT INTO Customer (customerid, firstname, lastname, age, gender, country) VALUES (2, 'Nick', 'Test', 21, 'Male', 'France');
